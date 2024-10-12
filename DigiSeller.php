@@ -1,11 +1,11 @@
 <?php
     
-	$_API_KEY = '';
+    $_API_KEY = '';
     $_SELLER_ID = '1092511';
 
     $uniquecode = $_GET['uniquecode'];
 
-	// получаем токен
+    // получаем токен
     $timestamp = time();
     $hashdata = ($_API_KEY . $timestamp);
     $sign = hash("sha256", $hashdata);
@@ -54,3 +54,4 @@
 
     $amount = $json->content->amount;
     $invoice_state = $json->content->invoice_state;
+
