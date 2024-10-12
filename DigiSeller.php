@@ -8,7 +8,7 @@
     // получаем токен
     $timestamp = time();
     $hashdata = ($_API_KEY . $timestamp);
-    $sign = hash("sha256", $hashdata);
+    $sign = hash("sha256", $hashdata); // получаем хеш подписи
 
     $post_data = [
         "seller_id" => $_SELLER_ID,
