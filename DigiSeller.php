@@ -1,17 +1,17 @@
 <?php
     
-    $_API_KEY = '';
-    $_SELLER_ID = '1092511';
+    define(API_KEY, '');
+    define(SELLER_ID, '1092511');
 
     $uniquecode = $_GET['uniquecode'];
 
 // ### получаем токен
     $timestamp = time();
-    $hashdata = ($_API_KEY . $timestamp);
+    $hashdata = (API_KEY . $timestamp);
     $sign = hash("sha256", $hashdata); // получаем хеш подписи
 
     $post_data = [
-        "seller_id" => $_SELLER_ID,
+        "seller_id" => SELLER_ID,
         "timestamp" => $timestamp,
         "sign" => $sign
     ];
