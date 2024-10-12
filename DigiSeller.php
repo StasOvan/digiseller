@@ -37,10 +37,12 @@
     $invoice_date = json_decode($result)->date_pay; // дата заказа
     $currency = json_decode($result)->type_curr;
 
-    if ($currency == "WMZ") $currency = "USD";
-    if ($currency == "WMR") $currency = "₽";
-    if ($currency == "WME") $currency = "EURO";
-    if ($currency == "WMX") $currency = "BTC";
+    switch ($currency) {
+        case "WMZ": $currency = "USD"; break;
+        case "WMR": $currency = "₽"; break;
+        case "WME": $currency = "EURO"; break;
+        case "WMX": $currency = "BTC"; break;
+    }
 
     // получаем инфу
     $result = file_get_contents("https://api.digiseller.ru/api/purchase/info/{$invoice_id}?token={$token}");
