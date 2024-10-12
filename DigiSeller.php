@@ -5,7 +5,7 @@
 
     $uniquecode = $_GET['uniquecode'];
 
-    // получаем токен
+    // ### получаем токен
     $timestamp = time();
     $hashdata = ($_API_KEY . $timestamp);
     $sign = hash("sha256", $hashdata); // получаем хеш подписи
@@ -29,14 +29,15 @@
 
     //if ($result) echo $result; else echo "false";
 
-    $token = json_decode($result)->token; // токен готов
+    $token = json_decode($result)->token; 
+    // ### токен готов
 
-    // запрашиваем наличие $uniquecode
+
+    // ### запрашиваем наличие $uniquecode
     $result = file_get_contents("https://api.digiseller.ru/api/purchases/unique-code/{$uniquecode}?token={$token}");
     $invoice_id = json_decode($result)->inv; // номер заказа
     $invoice_date = json_decode($result)->date_pay; // дата заказа
     $currency = json_decode($result)->type_curr;
-
     switch ($currency) {
         case "WMZ": $currency = "USD"; break;
         case "WMR": $currency = "₽"; break;
@@ -44,7 +45,7 @@
         case "WMX": $currency = "BTC"; break;
     }
 
-    // получаем инфу
+    // ### получаем инфу
     $result = file_get_contents("https://api.digiseller.ru/api/purchase/info/{$invoice_id}?token={$token}");
 
     $json = json_decode($result);
