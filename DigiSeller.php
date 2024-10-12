@@ -49,7 +49,6 @@
     $result = file_get_contents("https://api.digiseller.ru/api/purchase/info/{$invoice_id}?token={$token}");
 
     $json = json_decode($result);
-    $purchase_date = $json->content->purchase_date; 
     
     $options = $json->content->options;
     $options = (array)$options[0];
@@ -57,4 +56,4 @@
 
     $amount = $json->content->amount;
     $invoice_state = $json->content->invoice_state;
-
+    $purchase_date = $json->content->purchase_date;
